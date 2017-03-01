@@ -29,4 +29,18 @@ m.plot(forecast);
 #includes components -- trends for seasonaility, weekly, holidays (if included)
 m.plot_components(forecast);
 
+
+#Forecasting Growth
+#take read file and go further!
+df['cap'] = 8.5 #MaxCaryingCapacity
+m = Prophet(growth='logistic')
+m.fit(df)
+
+future = m.make_future_dataframe(periods=1826) #3Years
+future['cap'] = 8.5
+fcst = m.predict(future)
+m.plot(fcst);
+
+
+
 exit()
